@@ -37,7 +37,7 @@ case "$choice" in
 esac
 
 echo -n "Instalando arch-linux..."
-pacstrap /mnt base base-devel grub efibootmgr os-prober
+pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant
 genfstab -U /mnt > /mnt/etc/fstab
 echo "pronto."
 
