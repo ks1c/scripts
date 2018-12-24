@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #Verifica se o primeiro e segundo argumentos sao vazios. -e interpreta \n
-if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ]; then
-echo "linux_partition efi_partition user password"
+if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ] || [ "$5" == "" ]; then
+echo "linux_partition efi_partition user password notebook/desktop"
 exit 1
 fi
 
@@ -48,7 +48,27 @@ grub-mkconfig -o /boot/grub/grub.cfg
 { echo $4; echo $4; } | passwd
 useradd -m -G wheel $3
 { echo $4; echo $4; } | passwd $3
-echo %wheel ALL=(ALL) ALL >> /etc/sudoers
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
+if [ "$5" == "notebook" ]; then
+echo Y | pacman -S bumblebee
+echo Y | pacman -S nvidia
+echo Y | pacman -S nvidia-settings
+echo Y | pacman -S xf86-video-intel
+{ echo ""; echo Y; } | pacman -S xorg
+echo Y | pacman -S i3-gaps
+echo Y | pacman -S i3status
+echo Y | pacman -S xterm
+echo Y | pacman -S xorg-xinit
+gpasswd -a $3 bumblebee
+systemctl enable bumblebeed.service
+cp /etc/X11/xinit/xinitrc /home/$3/.xinitrc
+fi
+
+if [ "$5" == "desktop" ]; then
+fi
+
 EOF
+reboot
 
 
