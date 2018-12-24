@@ -6,7 +6,7 @@ echo "-linux_partition -efi_partition"
 exit 1
 fi
 
-pacman -S reflector
+echo y | pacman -S reflector
 
 #Atualiza relógio
 timedatectl set-ntp true
@@ -17,7 +17,7 @@ reflector --latest 50 --number 20 --protocol http --sort rate >> /etc/pacman.d/m
 echo "pronto."
 
 echo -n "Formatando particao linux..."
-mkfs.ext4 $1
+echo y | mkfs.ext4 $1
 echo "pronto."
 
 echo -n "Montando particao linux..."
@@ -28,6 +28,13 @@ echo -n "Montando particao UFI..."
 mkdir /mnt/boot
 mount $2 /mnt/boot
 echo "pronto."
+
+read -p "Continue? (y/n)" choice
+case "$choice" in
+	y ) ;;
+	n ) exit 1;;
+	* ) echo -n "invalid";;
+esac
 
 echo -n "Instalando arch-linux..."
 pacstrap /mnt base base-devel grub efibootmgr os-prober
