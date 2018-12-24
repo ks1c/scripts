@@ -6,6 +6,8 @@ echo "-linux_partition -efi_partition"
 exit 1
 fi
 
+pacman -S reflector
+
 #Atualiza relógio
 timedatectl set-ntp true
 
