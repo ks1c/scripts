@@ -41,6 +41,10 @@ pacstrap /mnt base base-devel grub efibootmgr os-prober
 genfstab -U /mnt > /mnt/etc/fstab
 echo "pronto."
 
-
+echo -n "entrando em chroot"
+cat << EOF | arch-chroot /mnt
+grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=archlinux
+grub-mkconfig -o /boot/grub/grub.cfg
+EOF
 
 
