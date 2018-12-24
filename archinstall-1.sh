@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #Verifica se o primeiro e segundo argumentos sao vazios. -e interpreta \n
-if [ "$1" == "" ] || [ "$2" == "" ]; then
-echo "-linux_partition -efi_partition"
+if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ]; then
+echo "linux_partition efi_partition user password"
 exit 1
 fi
 
@@ -29,12 +29,12 @@ mkdir /mnt/boot
 mount $2 /mnt/boot
 echo "pronto."
 
-read -p "Continue? (y/n)" choice
-case "$choice" in
-	y ) ;;
-	n ) exit 1;;
-	* ) echo -n "invalid";;
-esac
+#read -p "Continue? (y/n)" choice
+#case "$choice" in
+#	y ) ;;
+#	n ) exit 1;;
+#	* ) echo -n "invalid";;
+#esac
 
 echo -n "Instalando arch-linux..."
 pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant
@@ -45,6 +45,10 @@ echo -n "entrando em chroot"
 cat << EOF | arch-chroot /mnt
 grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=archlinux
 grub-mkconfig -o /boot/grub/grub.cfg
+{ echo $4; echo $4; } | passwd
+useradd -m -G wheel $3
+{ echo $4; echo $4; } | passwd $3
+echo %wheel ALL=(ALL) ALL >> /etc/sudoers
 EOF
 
 
