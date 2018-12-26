@@ -37,7 +37,12 @@ echo "pronto."
 #esac
 
 echo -n "Instalando arch-linux..."
+if [ "$5" == "desktop" ]; then
 pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant
+fi
+if [ "$5" == "notebook" ]; then
+pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant bumblebee nvidia nvidia-settings xf86-video-intel xorg i3-gaps i3status dmenu xterm xorg-xinit
+fi
 genfstab -U /mnt > /mnt/etc/fstab
 echo "pronto."
 
@@ -51,29 +56,31 @@ useradd -m -G wheel $3
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 if [ "$5" == "notebook" ]; then
-echo Y | pacman -S bumblebee
-echo Y | pacman -S nvidia
-echo Y | pacman -S nvidia-settings
-echo Y | pacman -S xf86-video-intel
-{ echo ""; echo Y; } | pacman -S xorg
-echo Y | pacman -S i3-gaps
-echo Y | pacman -S i3status
-echo Y | pacman -S dmenu
-echo Y | pacman -S xterm
-echo Y | pacman -S xorg-xinit
 gpasswd -a $3 bumblebee
 systemctl enable bumblebeed.service
+fi
+
 cp /etc/X11/xinit/xinitrc /home/$3/.xinitrc
 chown $3 /home/$3/.xinitrc
 cd /home/$3/
 git clone http://github.com/ks1c/scripts
 chown $3 -R scripts
-fi
 
 if [ "$5" == "desktop" ]; then
 fi
 
 EOF
 reboot
+
+# echo Y | pacman -S bumblebee
+# echo Y | pacman -S nvidia
+# echo Y | pacman -S nvidia-settings
+# echo Y | pacman -S xf86-video-intel
+# { echo ""; echo Y; } | pacman -S xorg
+# echo Y | pacman -S i3-gaps
+# echo Y | pacman -S i3status
+# echo Y | pacman -S dmenu
+# echo Y | pacman -S xterm
+# echo Y | pacman -S xorg-xinit
 
 
