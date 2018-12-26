@@ -62,9 +62,13 @@ fi
 
 cp /etc/X11/xinit/xinitrc /home/$3/.xinitrc
 chown $3 /home/$3/.xinitrc
+read -p "cd /home/user/ - press enter to continue"
 cd /home/$3/
+read -p "git cloning scripts - press enter to continue"
 git clone http://github.com/ks1c/scripts
+read -p "chowning scripts - press enter to continue"
 chown $3 -R scripts
+read -p "Finish, press enter to continue"
 
 if [ "$5" == "desktop" ]; then
 fi
