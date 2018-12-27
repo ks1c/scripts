@@ -47,6 +47,7 @@ genfstab -U /mnt > /mnt/etc/fstab
 echo "pronto."
 
 echo -n "entrando em chroot"
+if [ "$5" == "notebook" ]; then
 cat << EOF | arch-chroot /mnt
 grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=archlinux
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -54,27 +55,17 @@ grub-mkconfig -o /boot/grub/grub.cfg
 useradd -m -G wheel $3
 { echo $4; echo $4; } | passwd $3
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
-
-if [ "$5" == "notebook" ]; then
 gpasswd -a $3 bumblebee
 systemctl enable bumblebeed.service
-fi
-
 cp /etc/X11/xinit/xinitrc /home/$3/.xinitrc
 chown $3 /home/$3/.xinitrc
-read -p "cd /home/user/ - press enter to continue"
+mkdir /home/$3/
 cd /home/$3/
-read -p "git cloning scripts - press enter to continue"
 git clone http://github.com/ks1c/scripts
-read -p "chowning scripts - press enter to continue"
-chown $3 -R scripts
-read -p "Finish, press enter to continue"
-
-if [ "$5" == "desktop" ]; then
-fi
-
+chown $3 -R /home/$3/
 EOF
-reboot
+fi
+#reboot
 
 # echo Y | pacman -S bumblebee
 # echo Y | pacman -S nvidia
