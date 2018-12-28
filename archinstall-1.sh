@@ -41,9 +41,9 @@ if [ "$5" == "desktop" ]; then
 pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant
 fi
 if [ "$5" == "notebook" ]; then
-pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant git bumblebee nvidia nvidia-settings xf86-video-intel xorg i3-gaps i3status dmenu xterm xorg-xinit
+pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant git bumblebee nvidia nvidia-settings xf86-video-intel xorg i3-gaps i3status i3blocks dmenu xterm xorg-xinit
 fi
-genfstab -U /mnt > /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 echo "pronto."
 
 echo -n "entrando em chroot"
@@ -55,27 +55,24 @@ grub-mkconfig -o /boot/grub/grub.cfg
 useradd -m -G wheel $3
 { echo $4; echo $4; } | passwd $3
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
-gpasswd -a $3 bumblebee
-systemctl enable bumblebeed.service
+
+ln -sf /usr/share/zoneinfo/America/Campo_Grande /etc/localtime
+hwclock --systohc
+echo archlinux >> /etc/hostname
+echo pt_BR.UTF-8 UTF-8 >> /etc/locale.gen
+echo pt_BR ISO-8859-1 >> /etc/locale.gen
+locale-gen
+echo LANG=pt_BR.UTF-8 >> /etc/locale.conf
+
 cp /etc/X11/xinit/xinitrc /home/$3/.xinitrc
-chown $3 /home/$3/.xinitrc
-mkdir /home/$3/
 cd /home/$3/
 git clone http://github.com/ks1c/scripts
 chown $3 -R /home/$3/
+
+gpasswd -a $3 bumblebee
+systemctl enable bumblebeed.service
 EOF
 fi
 #reboot
-
-# echo Y | pacman -S bumblebee
-# echo Y | pacman -S nvidia
-# echo Y | pacman -S nvidia-settings
-# echo Y | pacman -S xf86-video-intel
-# { echo ""; echo Y; } | pacman -S xorg
-# echo Y | pacman -S i3-gaps
-# echo Y | pacman -S i3status
-# echo Y | pacman -S dmenu
-# echo Y | pacman -S xterm
-# echo Y | pacman -S xorg-xinit
 
 
