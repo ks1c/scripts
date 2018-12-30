@@ -41,7 +41,7 @@ if [ "$5" == "desktop" ]; then
 pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant
 fi
 if [ "$5" == "notebook" ]; then
-pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant git bbswitch bumblebee nvidia nvidia-settings xf86-video-intel xorg rxvt-unicode dmenu i3lock perl-json-xs perl-anyevent-i3 i3-gaps i3status acpi alsa-utils i3blocks xorg-xinit flameshot ttf-inconsolata ttf-croscore noto-fonts
+pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant git bbswitch bumblebee nvidia nvidia-settings xf86-video-intel xorg rxvt-unicode dmenu i3lock perl-json-xs perl-anyevent-i3 i3-gaps i3status acpi alsa-utils i3blocks xorg-xinit flameshot rofi neofetch compton ttf-inconsolata ttf-croscore noto-fonts
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
 echo "pronto."
