@@ -64,15 +64,15 @@ echo pt_BR ISO-8859-1 >> /etc/locale.gen
 locale-gen
 echo LANG=pt_BR.UTF-8 >> /etc/locale.conf
 
-cp /etc/X11/xinit/xinitrc /home/$3/.xinitrc
 cd /home/$3/
 git clone http://github.com/ks1c/scripts
+git clone http://github.com/ks1c/dotfiles
 chown $3 -R /home/$3/
 
 gpasswd -a $3 bumblebee
 systemctl enable bumblebeed.service
 EOF
 fi
-#reboot
+reboot
 
 
