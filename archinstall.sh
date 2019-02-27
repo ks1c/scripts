@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# start/enable iwd.service
+# iwctl
+# device list
+# station interface scan
+# station interface connect network_name
+# device interface show
+
 #Verifica se o primeiro e segundo argumentos sao vazios. -e interpreta \n
 if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ] || [ "$5" == "" ]; then
 echo "linux_partition efi_partition user password laptop/desktop"
@@ -31,10 +38,10 @@ echo "pronto."
 
 echo -n "Instalando arch-linux..."
 if [ "$5" == "desktop" ]; then
-pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant
+pacstrap /mnt base base-devel iwd grub efibootmgr os-prober vim git nvidia nvidia-settings xorg rxvt-unicode dmenu i3lock perl-json-xs perl-anyevent-i3 i3-gaps i3status acpi alsa-utils sysstat i3blocks xorg-xinit flameshot rofi neofetch htop compton ntfs-3g rsync papirus-icon-theme arc-solid-gtk-theme ttf-inconsolata ttf-croscore noto-fonts
 fi
 if [ "$5" == "laptop" ]; then
-pacstrap /mnt base base-devel grub efibootmgr os-prober wpa_supplicant vim git bbswitch bumblebee nvidia nvidia-settings xf86-video-intel xorg rxvt-unicode dmenu i3lock perl-json-xs perl-anyevent-i3 i3-gaps i3status acpi alsa-utils sysstat i3blocks xorg-xinit flameshot rofi neofetch htop compton ntfs-3g rsync papirus-icon-theme arc-solid-gtk-theme ttf-inconsolata ttf-croscore noto-fonts
+pacstrap /mnt base base-devel iwd grub efibootmgr os-prober vim git bbswitch bumblebee nvidia nvidia-settings xf86-video-intel xorg rxvt-unicode dmenu i3lock perl-json-xs perl-anyevent-i3 i3-gaps i3status acpi alsa-utils sysstat i3blocks xorg-xinit flameshot rofi neofetch htop compton ntfs-3g rsync papirus-icon-theme arc-solid-gtk-theme ttf-inconsolata ttf-croscore noto-fonts
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
 echo "pronto."
