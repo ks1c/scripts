@@ -8,7 +8,7 @@
 # device interface show
 
 #Verifica se o primeiro e segundo argumentos sao vazios. -e interpreta \n
-if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ] || [ "$5" == "" ]; then
+if [ $#<4 ]; then
 echo "linux_partition efi_partition user password laptop/desktop"
 exit 1
 fi
