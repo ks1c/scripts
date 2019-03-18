@@ -22,3 +22,9 @@ ln -s /home/$USERNAME/dotfiles/.bashrc /home/$USERNAME/.bashrc
 
 rm -rf /home/$USERNAME/.bash_profile
 ln -s /home/$USERNAME/dotfiles/.bash_profile /home/$USERNAME/.bash_profile
+
+rm -rf /home/$USERNAME/.gtkrc-2.0
+ln -s /home/$USERNAME/dotfiles/.gtkrc-2.0 /home/$USERNAME/.gtkrc-2.0
+
+rm -rf /home/$USERNAME/.config/gtk-3.0/
+ln -s /home/$USERNAME/dotfiles/gtk-3.0 /home/$USERNAME/.config/gtk-3.0/
