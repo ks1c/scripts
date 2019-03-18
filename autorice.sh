@@ -27,8 +27,8 @@ ln -s /home/$USERNAME/dotfiles/.bash_profile /home/$USERNAME/.bash_profile
 rm -rf /home/$USERNAME/.gtkrc-2.0
 ln -s /home/$USERNAME/dotfiles/.gtkrc-2.0 /home/$USERNAME/.gtkrc-2.0
 
-rm -rf /home/$USERNAME/.config/gtk-3.0/
-ln -s /home/$USERNAME/dotfiles/gtk-3.0 /home/$USERNAME/.config/gtk-3.0/
+rm -rf /home/$USERNAME/.config/gtk-3.0
+ln -s /home/$USERNAME/dotfiles/gtk-3.0 /home/$USERNAME/.config/gtk-3.0
 
 rm -rf /home/$USERNAME/.config/i3blocks
-ln -s /home/$USERNAME/dotfiles/i3blocks/$HOSTNAME /home/$USERNAME/.config/i3blocks/
+ln -s /home/$USERNAME/dotfiles/i3blocks/$HOSTNAME /home/$USERNAME/.config/i3blocks
