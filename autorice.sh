@@ -35,6 +35,3 @@ ln -s /home/$USERNAME/dotfiles/i3blocks/$HOSTNAME /home/$USERNAME/.config/i3bloc
 
 rm -rf /home/$USERNAME/.icons
 ln -s /home/$USERNAME/dotfiles/cursor.theme /home/$USERNAME/.icons
-
-rm -rf /home/$USERNAME/.config/dunstrc
-ln -s /home/$USERNAME/dotfiles/dunstrc /home/$USERNAME/.config/dunstrc
