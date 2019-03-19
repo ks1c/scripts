@@ -32,3 +32,6 @@ ln -s /home/$USERNAME/dotfiles/gtk-3.0 /home/$USERNAME/.config/gtk-3.0
 
 rm -rf /home/$USERNAME/.config/i3blocks
 ln -s /home/$USERNAME/dotfiles/i3blocks/$HOSTNAME /home/$USERNAME/.config/i3blocks
+
+rm -rf /home/$USERNAME/.icons
+ln -s /home/$USERNAME/dotfiles/cursor.theme /home/$USERNAME/.icons
