@@ -35,3 +35,6 @@ ln -s /home/$USERNAME/dotfiles/i3blocks/$HOSTNAME /home/$USERNAME/.config/i3bloc
 
 rm -rf /home/$USERNAME/.icons
 ln -s /home/$USERNAME/dotfiles/cursor.theme /home/$USERNAME/.icons
+
+rm -rf /home/$USERNAME/.config/termite
+ln -s /home/$USERNAME/dotfiles/termite /home/$USERNAME/.config/termite
