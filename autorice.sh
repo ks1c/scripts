@@ -38,3 +38,6 @@ ln -s /home/$USERNAME/dotfiles/cursor.theme /home/$USERNAME/.icons
 
 rm -rf /home/$USERNAME/.config/termite
 ln -s /home/$USERNAME/dotfiles/termite /home/$USERNAME/.config/termite
+
+rm -rf /home/$USERNAME/.config/vifm/
+ln -s /home/$USERNAME/dotfiles/vifm /home/$USERNAME/.config/vifm
