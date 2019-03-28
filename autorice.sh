@@ -41,3 +41,6 @@ ln -s /home/$USERNAME/dotfiles/termite /home/$USERNAME/.config/termite
 
 rm -rf /home/$USERNAME/.config/vifm
 ln -s /home/$USERNAME/dotfiles/vifm /home/$USERNAME/.config/vifm
+
+rm -rf /home/$USERNAME/.config/compton.conf
+ln -s /home/$USERNAME/dotfiles/compton/$HOSTNAME /home/$USERNAME/.config/compton.conf
