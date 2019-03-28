@@ -1,0 +1,7 @@
+#!/bin/bash
+
+UPGRADES=$(checkupdates | wc -l)
+
+if [ $UPGRADES -ne 0 ]; then
+echo " "$UPGRADES;
+fi
