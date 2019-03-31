@@ -1,7 +1,12 @@
 #!/bin/bash
 
-UPGRADES=$(checkupdates | wc -l)
+UPGRADES=$(checkupdates)
+NUMBEROFUPGRADES=$(echo "$UPGRADES" | wc -l)
 
-if [ $UPGRADES -ne 0 ]; then
-echo " "$UPGRADES;
+if [ $NUMBEROFUPGRADES -ne 0 ]; then
+echo " "$NUMBEROFUPGRADES;
 fi
+
+case $BLOCK_BUTTON in
+	1) notify-send "$UPGRADES"
+esac
