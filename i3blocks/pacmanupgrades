@@ -1,7 +1,8 @@
 #!/bin/bash
 
 UPGRADES=$(checkupdates)
-NUMBEROFUPGRADES=$(echo "$UPGRADES" | wc -l)
+#NUMBEROFUPGRADES=$(echo "$UPGRADES" | wc -l)
+NUMBEROFUPGRADES=$(checkupdates | wc -l)
 
 if [ $NUMBEROFUPGRADES -ne 0 ]; then
 echo " "$NUMBEROFUPGRADES;
