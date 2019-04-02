@@ -44,3 +44,6 @@ ln -s /home/$USERNAME/dotfiles/vifm /home/$USERNAME/.config/vifm
 
 rm -rf /home/$USERNAME/.config/compton.conf
 ln -s /home/$USERNAME/dotfiles/compton/$HOSTNAME /home/$USERNAME/.config/compton.conf
+
+rm -rf /home/$USERNAME/.config/nvim
+ln -s /home/$USERNAME/dotfiles/nvim /home/$USERNAME/.config/nvim
