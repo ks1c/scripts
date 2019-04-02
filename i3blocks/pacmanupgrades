@@ -1,11 +1,10 @@
 #!/bin/bash
 
 UPGRADES=$(checkupdates)
-#NUMBEROFUPGRADES=$(echo "$UPGRADES" | wc -l)
-NUMBEROFUPGRADES=$(checkupdates | wc -l)
 
-if [ $NUMBEROFUPGRADES -ne 0 ]; then
-echo " "$NUMBEROFUPGRADES;
+if [ "$UPGRADES" != "" ]; then 
+	NUMBEROFUPGRADES=$(echo "$UPGRADES" | wc -l)
+	echo " "$NUMBEROFUPGRADES;
 fi
 
 case $BLOCK_BUTTON in
