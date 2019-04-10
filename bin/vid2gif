@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+    echo "vid2gif input_video output_gif"
+    exit 1
+fi
+
+ffmpeg -i $1 -ss 00:00:00 $2
+
+sxiv -a $2 &
