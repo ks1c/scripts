@@ -24,7 +24,7 @@ if [ -e "$FIFO_UEBERZUG" ]; then
 
     elif [[ "$1" == "gifpreview" ]]; then
         echo -e "Loading preview..\nFile: $6"
-        [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/" && convert -coalesce "${PWD}/$6" "/tmp${PWD}/$6/$6.png"
+        [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/" && ffmpeg -i "${PWD}/$6" "/tmp${PWD}/$6/$6%03d.png"
         for frame in $(ls -1 /tmp${PWD}/$6/$6*.png | sort -V); do
            declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
                            [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
