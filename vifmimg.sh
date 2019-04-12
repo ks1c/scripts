@@ -22,18 +22,6 @@ if [ -e "$FIFO_UEBERZUG" ]; then
                            [path]="/tmp${PWD}/$6.png") \
             > "$FIFO_UEBERZUG"
 
-    elif [[ "$1" == "gifpreview" ]]; then
-        echo -e "Loading preview..\nFile: $6"
-        [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/" && ffmpeg -i "${PWD}/$6" "/tmp${PWD}/$6/$6%03d.png"
-        for frame in $(ls -1 /tmp${PWD}/$6/$6*.png | sort -V); do
-           declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
-                           [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
-                           [path]="$frame") \
-            > "$FIFO_UEBERZUG"
-            # Sleep between frames to make the animation smooth.
-            sleep .07
-        done
-
     elif [[ "$1" == "pdfpreview" ]]; then
         echo -e "Loading preview..\nFile: $6"
         [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/"
