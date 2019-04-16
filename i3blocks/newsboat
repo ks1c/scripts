@@ -1,0 +1,12 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	1) setsid "$TERMINAL" -e "newsboat -C $HOME/dotfiles/newsboat/config -u $HOME/dotfiles/newsboat/urls"
+esac
+
+UNREAD=$(newsboat -C ~/dotfiles/newsboat/config -u ~/dotfiles/newsboat/urls -x reload print-unread | awk '{print $1}')
+
+if [ "$UNREAD" -gt 0 ]; then
+	echo " "$UNREAD
+fi
+
