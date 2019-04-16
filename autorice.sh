@@ -47,3 +47,6 @@ ln -s /home/$USERNAME/dotfiles/compton/$HOSTNAME /home/$USERNAME/.config/compton
 
 rm -rf /home/$USERNAME/.config/nvim
 ln -s /home/$USERNAME/dotfiles/nvim /home/$USERNAME/.config/nvim
+
+rm -rf /home/$USERNAME/.config/newsboat
+ln -s /home/$USERNAME/dotfiles/newsboat /home/$USERNAME/.config/newsboat

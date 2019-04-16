@@ -19,7 +19,7 @@ esac
 if ! pgrep -x newsboat >/dev/null && ! $LAUNCHING_NEWSBOAT
 then
 	notify-send "Updating RSS feed."
-	newsboat -C ~/dotfiles/newsboat/config -u ~/dotfiles/newsboat/urls -x reload print-unread | awk '{print $1}' > /tmp/newsboat-unread
+	newsboat -x reload print-unread | awk '{print $1}' > /tmp/newsboat-unread
 fi
 
 UNREAD=$(cat /tmp/newsboat-unread)
