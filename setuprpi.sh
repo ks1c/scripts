@@ -6,12 +6,6 @@ HOSTNAME="rbp"
 
 USAGE="\nUSAGE: ./setuprbp.sh --username=username --password=password\n"
 
-if [ $# -ne 2 ]; then
-	echo -e $USAGE
-	exit
-fi
-
-
 for i in "$@"; do
 	case $i in
 		-u=*|--username=*)
@@ -26,11 +20,35 @@ for i in "$@"; do
 	esac
 done
 
+if [ "$USERNAME" = "" ] || [ "$PASSWORD" = "" ]; then
+	echo -e $USAGE
+	exit
+fi
+
 add_to_package_list() {
 	PACKAGE_LIST=$PACKAGE_LIST" $1"
 }
 
+#Essential
 add_to_package_list sudo
+add_to_package_list xf86-video-fbturbo-git
+
+#Tools
+
+#Appearance
+add_to_package_list xcursor-bluecurv
+add_to_package_list papirus-icon-theme
+add_to_package_list arc-solid-gtk-theme
+
+#Fonts
+add_to_package_list ttf-inconsolata
+add_to_package_list ttf-croscore
+add_to_package_list noto-fonts-emoji
+add_to_package_list awesome-terminal-fonts
+
+rice() {
+	echo "$PACKAGE_LIST"
+}
 
 if [ ! $RICE ]; then
 
@@ -70,4 +88,7 @@ if [ ! $RICE ]; then
 	git clone http://github.com/ks1c/dotfiles
 	chown $USERNAME -R /home/$USERNAME/
 	chgrp $USERNAME -R /home/$USERNAME/
+
+else
+	rice
 fi
