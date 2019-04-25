@@ -14,7 +14,7 @@ if [ -e "$FIFO_UEBERZUG" ]; then
             > "$FIFO_UEBERZUG"
 
     elif [[ "$1" == "videopreview" ]]; then
-        echo -e "Loading preview..\nFile: $6"
+        echo -e "\n  Loading preview..\n  File: $6"
         [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/"
         [[ ! -f "/tmp${PWD}/$6.png" ]] && ffmpegthumbnailer -i "${PWD}/$6" -o "/tmp${PWD}/$6.png" -s 0 -q 10
         declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
