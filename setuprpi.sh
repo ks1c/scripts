@@ -2,9 +2,13 @@
 
 RICE=false
 
+SETUP_SD_CARD=false
+
 HOSTNAME="rbp"
 
-USAGE="\nUSAGE: ./setuprbp.sh --username=username --password=password\n"
+USAGE="\nUSAGE: ./setuprbp.sh --username=username --password=password
+       \nUSAGE: ./setuprbp.sh --rice --username=username --password=password
+       \nUSAGE: ./setuprbp.sh --set-up-sdcard\n"
 
 for i in "$@"; do
 	case $i in
@@ -17,10 +21,18 @@ for i in "$@"; do
 		--rice)
 			RICE=true
 			;;
+		--set-sdcard)
+			SETUP_SD_CARD=true
+			;;
 	esac
 done
 
 if [ "$USERNAME" = "" ] || [ "$PASSWORD" = "" ]; then
+	echo -e $USAGE
+	exit
+fi
+
+if [ "$RICE" = true ] || [ "$SETUP_SD_CARD" = true ]; then
 	echo -e $USAGE
 	exit
 fi
@@ -50,7 +62,7 @@ rice() {
 	echo "$PACKAGE_LIST"
 }
 
-if [ ! $RICE ]; then
+if [ ! $RICE ] || [ ! $SETUP_SD_CARD]; then
 
 	loadkeys br-abnt2
 	pacman-key --init
