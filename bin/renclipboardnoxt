@@ -5,4 +5,4 @@
 OLDNAME=$1
 NEWNAME=$(xclip -o | awk -F '.' '{print $1}')
 EXTENSION=$(echo $OLDNAME | awk -F '.' '{print $2}')
-mv "$OLDNAME" "$NEWNAME"."$EXTENSION"
+mv "$OLDNAME" "$NEWNAME"."$EXTENSION" &> /dev/null
