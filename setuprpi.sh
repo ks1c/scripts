@@ -32,7 +32,7 @@ if [ "$USERNAME" = "" ] || [ "$PASSWORD" = "" ]; then
 	exit
 fi
 
-if [ "$RICE" = true ] || [ "$SETUP_SD_CARD" = true ]; then
+if [ "$RICE" = true ] && [ "$SETUP_SD_CARD" = true ]; then
 	echo -e $USAGE
 	exit
 fi
@@ -64,7 +64,7 @@ rice() {
 	echo "$PACKAGE_LIST"
 }
 
-if [ ! $RICE ] || [ ! $SETUP_SD_CARD]; then
+if [ ! $RICE ] && [ ! $SETUP_SD_CARD]; then
 
 	loadkeys br-abnt2
 	pacman-key --init
