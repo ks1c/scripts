@@ -44,8 +44,10 @@ add_to_package_list() {
 #Essential
 add_to_package_list sudo
 add_to_package_list xf86-video-fbturbo-git
+add_to_package_list xorg
 
 #Tools
+add_to_package_list neovim
 
 #Appearance
 add_to_package_list xcursor-bluecurv
