@@ -60,8 +60,12 @@ add_to_package_list ttf-croscore
 add_to_package_list noto-fonts-emoji
 add_to_package_list awesome-terminal-fonts
 
+set_up_sdcard() {
+	echo set_up_sdcard
+}
+
 rice() {
-	echo "$PACKAGE_LIST"
+	echo rice
 }
 
 if [ ! $RICE ] && [ ! $SETUP_SD_CARD]; then
@@ -103,6 +107,6 @@ if [ ! $RICE ] && [ ! $SETUP_SD_CARD]; then
 	chown $USERNAME -R /home/$USERNAME/
 	chgrp $USERNAME -R /home/$USERNAME/
 
-else
+elif [ "$RICE" = true ]; then
 	rice
 fi
