@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Rename files preserving old file name extension
+
+OLDNAME=$1
+NEWNAME=$(echo $2 | awk -F '.' '{print $1}')
+EXTENSION=$(echo $OLDNAME | awk -F '.' '{print $2}')
+mv "$OLDNAME" "$NEWNAME"."$EXTENSION" &> /dev/null
