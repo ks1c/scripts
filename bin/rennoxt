@@ -3,6 +3,7 @@
 # Rename files preserving old file name extension
 
 OLDNAME=$1
-NEWNAME=$(echo $2 | awk -F '.' '{print $1}')
-EXTENSION=$(echo $OLDNAME | awk -F '.' '{print $2}')
-mv "$OLDNAME" "$NEWNAME"."$EXTENSION" &> /dev/null
+KEEPEXTENSION=$(echo $OLDNAME | awk -F '.' '{print $NF}')
+REMOVEEXTENSION=$(echo $2 | awk -F '.' '{print $NF}')
+NEWNAME=$(echo $2 | sed "s/$REMOVEEXTENSION//g")
+mv "$OLDNAME" "$NEWNAME""$KEEPEXTENSION" &> /dev/null

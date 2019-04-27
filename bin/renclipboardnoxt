@@ -3,6 +3,7 @@
 # Rename file with clipboard content preserving old file name extension
 
 OLDNAME=$1
-NEWNAME=$(xclip -o | awk -F '.' '{print $1}')
-EXTENSION=$(echo $OLDNAME | awk -F '.' '{print $2}')
-mv "$OLDNAME" "$NEWNAME"."$EXTENSION" &> /dev/null
+KEEPEXTENSION=$(echo $OLDNAME | awk -F '.' '{print $NF}')
+REMOVEEXTENSION=$(xclip -o | awk -F '.' '{print $NF}')
+NEWNAME=$(xclip -o | sed "s/$REMOVEEXTENSION//g")
+mv "$OLDNAME" "$NEWNAME""$KEEPEXTENSION" &> /dev/null
