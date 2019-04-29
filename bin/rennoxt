@@ -4,9 +4,8 @@
 
 OLDNAME=$1
 KEEPEXTENSION=$(echo $OLDNAME | awk -F '.' '{print $NF}')
-REMOVEEXTENSION=$(echo $2 | awk -F '.' '{print $NF}')
-NEWNAME=$(echo $2 | sed "s/$REMOVEEXTENSION//g")
+NEWNAME=$(echo $2 | awk -F '.' -vOFS='.' '$NF='$KEEPEXTENSION'')
 
-if [ "$OLDNAME" != "$NEWNAME$KEEPEXTENSION" ]; then
-	mv "$OLDNAME" "$NEWNAME$KEEPEXTENSION" &> /dev/null
+if [ "$OLDNAME" != "$NEWNAME" ]; then
+	mv "$OLDNAME" "$NEWNAME" &> /dev/null
 fi
