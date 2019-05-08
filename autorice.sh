@@ -1,11 +1,27 @@
 #!/bin/bash
 
-USERNAME=$1
-HOSTNAME=$2
+USAGE="\nUSAGE: ./autorice.sh --username=username --hostname=hostname
+       \nUSAGE: ./autorice.sh --username=username --hostname=hostname --post-installation\n"
 
-if [ $# -ne 2 ]; then
-    echo ./autorice.sh USERNAME HOSTNAME
-    exit 1
+POST_INSTALLATION=false
+
+for i in "$@"; do
+	case $i in
+		-u=*|--username=*)
+			USERNAME="${i#*=}"
+			;;
+		-h=*|--hostname=*)
+			HOSTNAME="${i#*=}"
+			;;
+		--post-installation)
+			POST_INSTALLATION=true
+			;;
+	esac
+done
+
+if [ "$USERNAME" = "" ] || [ "$HOSTNAME" = "" ]; then
+	echo -e $USAGE
+	exit
 fi
 
 if [ ! -d /home/$USERNAME/.config ]; then
@@ -50,3 +66,13 @@ ln -s /home/$USERNAME/dotfiles/nvim /home/$USERNAME/.config/nvim
 
 rm -rf /home/$USERNAME/.config/newsboat
 ln -s /home/$USERNAME/dotfiles/newsboat /home/$USERNAME/.config/newsboat
+
+if [ $POST_INSTALLATION ]; then
+	nvim +PluginInstall +qall
+	cd yay && makepkg -Asci && cd .. && rm -rf yay
+	yay -S python-ueberzug
+	if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+		exec startx $HOME/dotfiles/xinitrc
+	fi
+	exit
+fi
