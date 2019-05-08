@@ -72,7 +72,6 @@ if [ $POST_INSTALLATION ]; then
 	cd yay && makepkg -Asci && cd .. && rm -rf yay
 	yay -S python-ueberzug
 	if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-		exec startx $HOME/dotfiles/xinitrc
+		exec startx /home/$USERNAME/dotfiles/xinitrc
 	fi
-	exit
 fi
