@@ -67,7 +67,7 @@ ln -s /home/$USERNAME/dotfiles/nvim /home/$USERNAME/.config/nvim
 rm -rf /home/$USERNAME/.config/newsboat
 ln -s /home/$USERNAME/dotfiles/newsboat /home/$USERNAME/.config/newsboat
 
-if [ $POST_INSTALLATION ]; then
+if [ "$POST_INSTALLATION" = true ]; then
 	nvim +PluginInstall +qall
 	cd yay && makepkg -Asci && cd .. && rm -rf yay
 	yay -S python-ueberzug
