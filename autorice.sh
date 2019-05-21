@@ -71,6 +71,7 @@ if [ "$POST_INSTALLATION" = true ]; then
 	nvim +PluginInstall +qall
 	cd yay && makepkg -Asci && cd .. && rm -rf yay
 	yay -S python-ueberzug
+	source /home/$USERNAME/.bash_profile
 	if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 		exec startx /home/$USERNAME/dotfiles/xinitrc
 	fi
