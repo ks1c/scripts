@@ -25,7 +25,8 @@ if [ -e "$FIFO_UEBERZUG" ]; then
     elif [[ "$1" == "pdfpreview" ]]; then
         echo -e "Loading preview..\nFile: $6"
         [[ ! -d "/tmp${PWD}/$6/" ]] && mkdir -p "/tmp${PWD}/$6/"
-        [[ ! -f "/tmp${PWD}/$6.png" ]] && pdftoppm -png -singlefile "$6" "/tmp${PWD}/$6"
+       #[[ ! -f "/tmp${PWD}/$6.png" ]] && pdftoppm -png -singlefile "$6" "/tmp${PWD}/$6"
+        [[ ! -f "/tmp${PWD}/$6.jpg" ]] && gs -sDEVICE=jpeg -o "/tmp${PWD}/$6.jpg" -sPAPERSIZE=a4 "$6"
         declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
                            [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
                            [path]="/tmp${PWD}/$6.png") \
