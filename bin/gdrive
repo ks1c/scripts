@@ -1,0 +1,22 @@
+#!/bin/bash
+
+function pull() {
+}
+
+function push() {
+}
+
+for i in "$@"; do
+	case $i in
+		pull)
+			echo "pulling"
+			;;
+		push)
+			echo "pushing"
+			;;
+		*)
+			exit
+			;;
+	esac
+done
+
