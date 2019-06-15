@@ -1,18 +1,24 @@
 #!/bin/bash
 
 function pull() {
+	rclone sync gdrive: ~/gdrive -P -v
+	notify-send \
+		"Google Drive" \
+		"Google Drive is synched."  \
+		--icon=~/.local/share/icons/gdrive.png
 }
 
 function push() {
+	rclone sync ~/gdrive gdrive: -P -v
 }
 
 for i in "$@"; do
 	case $i in
 		pull)
-			echo "pulling"
+			pull
 			;;
 		push)
-			echo "pushing"
+			push
 			;;
 		*)
 			exit
