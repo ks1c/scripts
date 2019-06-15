@@ -67,6 +67,9 @@ ln -s /home/$USERNAME/dotfiles/nvim /home/$USERNAME/.config/nvim
 rm -rf /home/$USERNAME/.config/newsboat
 ln -s /home/$USERNAME/dotfiles/newsboat /home/$USERNAME/.config/newsboat
 
+rm -rf /home/$USERNAME/.config/sxiv
+ln -s /home/$USERNAME/dotfiles/sxiv /home/$USERNAME/.config/sxiv
+
 if [ "$POST_INSTALLATION" = true ]; then
 	nvim +PluginInstall +qall
 	cd yay && makepkg -Asci && cd .. && rm -rf yay
