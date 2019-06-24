@@ -42,6 +42,7 @@ add_to_package_list() {
 }
 
 #Essential
+add_to_package_list base-devel
 add_to_package_list sudo
 add_to_package_list xf86-video-fbturbo-git
 add_to_package_list xorg
