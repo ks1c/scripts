@@ -31,14 +31,11 @@ fi
 rm -rf /home/$USERNAME/.config/fontconfig
 ln -s /home/$USERNAME/dotfiles/fontconfig /home/$USERNAME/.config/fontconfig
 
-rm -rf /home/$USERNAME/.config/fish
-ln -s /home/$USERNAME/dotfiles/fish /home/$USERNAME/.config/fish
+rm -rf /home/$USERNAME/.zshrc
+ln -s /home/$USERNAME/dotfiles/.zshrc /home/$USERNAME/.zshrc
 
-rm -rf /home/$USERNAME/.bashrc
-ln -s /home/$USERNAME/dotfiles/.bashrc /home/$USERNAME/.bashrc
-
-rm -rf /home/$USERNAME/.bash_profile
-ln -s /home/$USERNAME/dotfiles/.bash_profile /home/$USERNAME/.bash_profile
+rm -rf /home/$USERNAME/.zprofile
+ln -s /home/$USERNAME/dotfiles/.zprofile /home/$USERNAME/.zprofile
 
 rm -rf /home/$USERNAME/.gtkrc-2.0
 ln -s /home/$USERNAME/dotfiles/.gtkrc-2.0 /home/$USERNAME/.gtkrc-2.0
@@ -70,11 +67,27 @@ ln -s /home/$USERNAME/dotfiles/newsboat /home/$USERNAME/.config/newsboat
 rm -rf /home/$USERNAME/.config/sxiv
 ln -s /home/$USERNAME/dotfiles/sxiv /home/$USERNAME/.config/sxiv
 
+rm -rf /home/$USERNAME/.local/share/applications
+mkdir /home/$USERNAME/.local/share/applications
+ln -s /home/$USERNAME/dotfiles/mime/vifm.desktop /home/$USERNAME/.local/share/applications/vifm.desktop
+rm -rf /home/$USERNAME/.config/mimeapps.list
+ln -s /home/$USERNAME/dotfiles/mime/mimeapps.list /home/$USERNAME/.config/mimeapps.list
+
+rm .bash_logout .bash_history .bash_profile .bashrc
+
 if [ "$POST_INSTALLATION" = true ]; then
-	nvim +PluginInstall +qall
+	git clone https://aur.archlinux.org/yay.git
 	cd yay && makepkg -Asci && cd .. && rm -rf yay
-	yay -S python-ueberzug
-	source /home/$USERNAME/.bash_profile
+	yay -S python-ueberzug archivemount rar2fs
+	sed -i 's/colorscheme gruvbox/"colorscheme gruvbox/g' /home/$USERNAME/dotfiles/nvim/init.vim
+	git clone https://github.com/VundleVim/Vundle.vim.git /home/$USERNAME/.vim/bundle/Vundle.vim
+	nvim +PluginInstall +qall
+	sed -i 's/"colorscheme gruvbox/colorscheme gruvbox/g' /home/$USERNAME/dotfiles/nvim/init.vim
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting .zsh/zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-completions .zsh/zsh-completions
+	git clone https://github.com/zsh-users/zsh-history-substring-search .zsh/zsh-history-substring-search
+	git clone https://github.com/zsh-users/zsh-autosuggestions .zsh/zsh-autosuggestions
+	source /home/$USERNAME/.zprofile
 	if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 		exec startx /home/$USERNAME/dotfiles/xinitrc
 	fi
