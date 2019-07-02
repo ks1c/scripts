@@ -67,9 +67,8 @@ ln -s /home/$USERNAME/dotfiles/newsboat /home/$USERNAME/.config/newsboat
 rm -rf /home/$USERNAME/.config/sxiv
 ln -s /home/$USERNAME/dotfiles/sxiv /home/$USERNAME/.config/sxiv
 
-#rm -rf /home/$USERNAME/.local/share/applications
-#mkdir /home/$USERNAME/.local/share/applications
-#ln -s /home/$USERNAME/dotfiles/mime/vifm.desktop /home/$USERNAME/.local/share/applications/vifm.desktop
+mkdir /home/$USERNAME/.local/share/applications
+ln -s /home/$USERNAME/dotfiles/mime/vifm.desktop /home/$USERNAME/.local/share/applications/vifm.desktop
 rm -rf /home/$USERNAME/.config/mimeapps.list
 ln -s /home/$USERNAME/dotfiles/mime/mimeapps.list /home/$USERNAME/.config/mimeapps.list
 
@@ -88,7 +87,7 @@ if [ "$POST_INSTALLATION" = true ]; then
 	git clone https://github.com/zsh-users/zsh-history-substring-search .zsh/zsh-history-substring-search
 	git clone https://github.com/zsh-users/zsh-autosuggestions .zsh/zsh-autosuggestions
 	source /home/$USERNAME/.zprofile
-	pip install ueberzug --user
+	#pip install ueberzug --user
 	if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 		exec startx /home/$USERNAME/dotfiles/xinitrc
 	fi
