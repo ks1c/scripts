@@ -67,7 +67,7 @@ ln -s /home/$USERNAME/dotfiles/newsboat /home/$USERNAME/.config/newsboat
 rm -rf /home/$USERNAME/.config/sxiv
 ln -s /home/$USERNAME/dotfiles/sxiv /home/$USERNAME/.config/sxiv
 
-mkdir /home/$USERNAME/.local/share/applications
+mkdir /home/$USERNAME/.local /home/$USERNAME/.local/share /home/$USERNAME/.local/share/applications
 ln -s /home/$USERNAME/dotfiles/mime/vifm.desktop /home/$USERNAME/.local/share/applications/vifm.desktop
 rm -rf /home/$USERNAME/.config/mimeapps.list
 ln -s /home/$USERNAME/dotfiles/mime/mimeapps.list /home/$USERNAME/.config/mimeapps.list
@@ -77,7 +77,7 @@ rm .bash_logout .bash_history .bash_profile .bashrc
 if [ "$POST_INSTALLATION" = true ]; then
 	git clone https://aur.archlinux.org/yay.git
 	cd yay && makepkg -Asci && cd .. && rm -rf yay
-	yay -S archivemount rar2fs
+	yay -S python-ueberzug archivemount rar2fs
 	sed -i 's/colorscheme gruvbox/"colorscheme gruvbox/g' /home/$USERNAME/dotfiles/nvim/init.vim
 	git clone https://github.com/VundleVim/Vundle.vim.git /home/$USERNAME/.vim/bundle/Vundle.vim
 	nvim +PluginInstall +qall
