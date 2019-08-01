@@ -72,12 +72,12 @@ ln -s /home/$USERNAME/dotfiles/mime/vifm.desktop /home/$USERNAME/.local/share/ap
 rm -rf /home/$USERNAME/.config/mimeapps.list
 ln -s /home/$USERNAME/dotfiles/mime/mimeapps.list /home/$USERNAME/.config/mimeapps.list
 
-rm .bash_logout .bash_history .bash_profile .bashrc
+rm .bash*
 
 if [ "$POST_INSTALLATION" = true ]; then
 	git clone https://aur.archlinux.org/yay.git
 	cd yay && makepkg -Asci && cd .. && rm -rf yay
-	yay -S python-ueberzug archivemount rar2fs
+	yay -S archivemount rar2fs
 	sed -i 's/colorscheme gruvbox/"colorscheme gruvbox/g' /home/$USERNAME/dotfiles/nvim/init.vim
 	git clone https://github.com/VundleVim/Vundle.vim.git /home/$USERNAME/.vim/bundle/Vundle.vim
 	nvim +PluginInstall +qall
@@ -87,7 +87,6 @@ if [ "$POST_INSTALLATION" = true ]; then
 	git clone https://github.com/zsh-users/zsh-history-substring-search .zsh/zsh-history-substring-search
 	git clone https://github.com/zsh-users/zsh-autosuggestions .zsh/zsh-autosuggestions
 	source /home/$USERNAME/.zprofile
-	#pip install ueberzug --user
 	if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 		exec startx /home/$USERNAME/dotfiles/xinitrc
 	fi
