@@ -1,9 +1,0 @@
-#!/bin/sh
-
-date '+%Y-%m-%d'
-
-case $BLOCK_BUTTON in
-	1) pgrep -x dunst >/dev/null && dunstify "$(cal)" ;;
-	#1) pgrep -x dunst >/dev/null && dunstify "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" ;;
-	3) exec conky -c ~/dotfiles/conky/bigcalendar/conky.conf
-esac
