@@ -1,14 +1,30 @@
 #!/bin/sh
 
-check_updates() {
+STATUS=""
 
-	updates=$(checkupdates)
+_time() {
 
-	if [ "$updates" != "" ]; then
-		updates=" $(echo "$updates" | wc -l)  "
+	_time="  $(date '+%H:%M')"
+
+	if [ "$STATUS" = "" ]; then
+		STATUS="$_time"
 	else
-		updates=""
+		STATUS="$STATUS  $_time"
 	fi
 }
-check_updates
-xsetroot -name "$updates"
+
+_date() {
+
+	_date="  $(date '+%Y-%m-%d')"
+
+	if [ "$STATUS" = "" ]; then
+		STATUS="$_date"
+	else
+		STATUS="$STATUS  $_date"
+	fi
+}
+
+_date
+_time
+
+echo "$STATUS"
