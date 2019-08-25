@@ -24,6 +24,30 @@ _date() {
 	fi
 }
 
+_disk_usage_home() {
+
+	_disk_usage_home="  $(df -h $HOME | awk 'NR==2 {print $4}')"
+
+	if [ "$STATUS" = "" ]; then
+		STATUS="$_disk_usage_home"
+	else
+		STATUS="$STATUS  $_disk_usage_home"
+	fi
+}
+
+_disk_usage_storage() {
+
+	_disk_usage_storage="  $(df -h /media/files | awk 'NR==2 {print $4}')"
+
+	if [ "$STATUS" = "" ]; then
+		STATUS="$_disk_usage_storage"
+	else
+		STATUS="$STATUS  $_disk_usage_storage"
+	fi
+}
+
+_disk_usage_storage
+_disk_usage_home
 _date
 _time
 
