@@ -4,7 +4,7 @@ STATUS=""
 
 _time() {
 
-	_time="  $(date '+%H:%M')"
+	_time=" $(date '+%H:%M')"
 
 	if [ "$STATUS" = "" ]; then
 		STATUS="$_time"
@@ -15,7 +15,7 @@ _time() {
 
 _date() {
 
-	_date="  $(date '+%Y-%m-%d')"
+	_date=" $(date '+%Y-%m-%d')"
 
 	if [ "$STATUS" = "" ]; then
 		STATUS="$_date"
@@ -26,7 +26,7 @@ _date() {
 
 _disk_usage_home() {
 
-	_disk_usage_home="  $(df -h $HOME | awk 'NR==2 {print $4}')"
+	_disk_usage_home=" $(df -h $HOME | awk 'NR==2 {print $4}')"
 
 	if [ "$STATUS" = "" ]; then
 		STATUS="$_disk_usage_home"
@@ -37,7 +37,7 @@ _disk_usage_home() {
 
 _disk_usage_storage() {
 
-	_disk_usage_storage="  $(df -h /media/files | awk 'NR==2 {print $4}')"
+	_disk_usage_storage=" $(df -h /media/files | awk 'NR==2 {print $4}')"
 
 	if [ "$STATUS" = "" ]; then
 		STATUS="$_disk_usage_storage"
@@ -46,9 +46,26 @@ _disk_usage_storage() {
 	fi
 }
 
+_updates() {
+
+	_updates=" 5"
+
+	if [ "$STATUS" = "" ]; then
+		STATUS="$_updates"
+	else
+		STATUS="$STATUS  $_updates"
+	fi
+}
+
+[ -f ~/.tmprc ] && source ~/.tmprc
+
+#_updates
 _disk_usage_storage
 _disk_usage_home
 _date
 _time
 
-echo "$STATUS"
+while true; do
+	xsetroot -name "$STATUS"
+	sleep 1m
+done
