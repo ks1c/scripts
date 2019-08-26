@@ -70,7 +70,7 @@ _volume() {
 
 [ -f ~/.tmprc ] && source ~/.tmprc
 
-while true; do
+if [ $1 = "refresh" ]; then
 
 	STATUS=""
 	#_updates
@@ -80,5 +80,19 @@ while true; do
 	_date
 	_time
 	xsetroot -name "$STATUS"
-	sleep 1m
-done
+
+else
+
+	while true; do
+
+		STATUS=""
+		#_updates
+		_volume
+		_disk_usage_storage
+		_disk_usage_home
+		_date
+		_time
+		xsetroot -name "$STATUS"
+		sleep 1m
+	done
+fi
