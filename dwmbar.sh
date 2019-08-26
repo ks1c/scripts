@@ -57,15 +57,28 @@ _updates() {
 	fi
 }
 
+_volume() {
+
+	_volume=" $(amixer sget Master | awk -F"[][]" '/dB/ { print $2 }')"
+
+	if [ "$STATUS" = "" ]; then
+		STATUS="$_volume"
+	else
+		STATUS="$STATUS  $_volume"
+	fi
+}
+
 [ -f ~/.tmprc ] && source ~/.tmprc
 
-#_updates
-_disk_usage_storage
-_disk_usage_home
-_date
-_time
-
 while true; do
+
+	STATUS=""
+	#_updates
+	_volume
+	_disk_usage_storage
+	_disk_usage_home
+	_date
+	_time
 	xsetroot -name "$STATUS"
 	sleep 1m
 done
