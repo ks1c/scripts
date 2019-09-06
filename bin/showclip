@@ -1,0 +1,16 @@
+#!/bin/sh
+if [ "$(xclip -selection primary -t TARGETS -o | grep STRING)" != "" ]; then
+	PRIMARY="$(xclip -selection primary -o)"
+else
+	PRIMARY="$(xclip -selection primary -t TARGETS -o | sed '/TARGETS/d')"
+fi
+
+if [ "$(xclip -selection clipboard -t TARGETS -o | grep STRING)" != "" ]; then
+	CLIPBOARD="$(xclip -selection clipboard -o)"
+else
+	CLIPBOARD="$(xclip -selection CLIPBOARD -t TARGETS -o | sed '/TARGETS/d')"
+fi
+
+echo "$PRIMARY"
+echo "$CLIPBOARD"
+
