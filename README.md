@@ -10,3 +10,4 @@ open image in a pop up sxiv
 - [x] ~~make script for easy renaming subtitles~~ using vifm with shortcuts now
 - [ ] make script for easy sending files to rasp in vifm
 - [ ] use xdo to control popups
+- [ ] make alias for vifm and change path order
