@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+telegram-desktop && xdotool search --onlyvisible --name Telegram windowsize 380 480
