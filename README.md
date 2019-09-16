@@ -11,5 +11,9 @@ open image in a pop up sxiv
 - [x] ~~make script for easy renaming subtitles~~ using vifm with shortcuts now
 - [ ] make script for easy sending files to rasp in vifm
 - [x] make alias for vifm and change PATH order
+- [ ] make cron job for verify pacman updates and save to /tmp
+- [ ] update dwmbar with script for checking pacman updates in /tmp
+- [ ] make cron job for verify news updates (newsboat) and save to /tmp
+- [ ] update dwmbar with script for checking news updates in /tmp
 - [ ] use xdo to control popups
   - [x] Telegram
