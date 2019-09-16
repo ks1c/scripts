@@ -20,11 +20,22 @@ _volume() {
 	echo -n " $(amixer sget Master | awk -F"[][]" '/dB/ { print $2 }')"
 }
 
-if [ $1 = "refresh" ]; then
-	xsetroot -name "$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
-else
-	while true; do
+if [ "$(cat /etc/hostname)" = "desktop" ]; then
+	if [ "$1" = "refresh" ]; then
 		xsetroot -name "$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
-		sleep 1m
-	done
+	else
+		while true; do
+			xsetroot -name "$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
+			sleep 1m
+		done
+	fi
+elif [ "$(cat /etc/hostname)" = "vm" ]; then
+	if [ "$1" = "refresh" ]; then
+		xsetroot -name "$(_disk_usage_home)  $(_date)  $(_time)"
+	else
+		while true; do
+			xsetroot -name "$(_disk_usage_home)  $(_date)  $(_time)"
+			sleep 1m
+		done
+	fi
 fi
