@@ -29,7 +29,7 @@ if [ "$(cat /etc/hostname)" = "laptop" ]; then
 			sleep 1m
 		done
 	fi
-if [ "$(cat /etc/hostname)" = "desktop" ]; then
+elif [ "$(cat /etc/hostname)" = "desktop" ]; then
 	if [ "$1" = "refresh" ]; then
 		xsetroot -name "$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
 	else
