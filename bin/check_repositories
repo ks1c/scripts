@@ -1,3 +1,33 @@
 #!/usr/bin/env sh
 
-#TODO
+declare -i AHEAD=0
+declare -i BEHIND=0
+
+declare -a repo_list=(
+"$HOME/dotfiles"
+"$HOME/scripts"
+)
+
+for i in "${repo_list[@]}"; do
+	break
+	#cd "$i"
+	#git fetch
+done
+
+#GITSTATUS="$(git status)"
+GITSTATUS="$1"
+
+if [ "$(echo $GITSTATUS | grep "is ahead")" != "" ]; then
+	echo "is ahead"
+elif [ "$(echo $GITSTATUS | grep "is behind")" != "" ]; then
+	echo "is behind"
+elif [ "$(echo $GITSTATUS | grep "have diverged")" != "" ]; then
+	echo "have diverged"
+fi
+#cat $1 | grep "is behind" | grep -o '[0-9]'
+#cat $1 | grep "is ahead" | grep -o '[0-9]'
+#AHEAD+=$1
+#echo $AHEAD
+#declare -a DIVERGED=($1)
+#AHEAD+="${DIVERGED[0]}"
+#echo $AHEAD
