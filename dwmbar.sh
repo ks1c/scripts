@@ -20,30 +20,37 @@ _volume() {
 	echo -n " $(amixer sget Master | awk -F"[][]" '/dB/ { print $2 }')"
 }
 
+_pacman() {
+	updates="$(cat /tmp/pacman_updates)"
+	if [ "$updates" != "0" ]; then
+		echo -n " $updates  "
+	fi
+}
+
 if [ "$(cat /etc/hostname)" = "laptop" ]; then
 	if [ "$1" = "refresh" ]; then
-		xsetroot -name "$(_volume)  $(_disk_usage_home)  $(_date)  $(_time)"
+		xsetroot -name "$(_pacman)$(_volume)  $(_disk_usage_home)  $(_date)  $(_time)"
 	else
 		while true; do
-			xsetroot -name "$(_volume)  $(_disk_usage_home)  $(_date)  $(_time)"
+			xsetroot -name "$(_pacman)$(_volume)  $(_disk_usage_home)  $(_date)  $(_time)"
 			sleep 1m
 		done
 	fi
 elif [ "$(cat /etc/hostname)" = "desktop" ]; then
 	if [ "$1" = "refresh" ]; then
-		xsetroot -name "$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
+		xsetroot -name "$(_pacman)$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
 	else
 		while true; do
-			xsetroot -name "$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
+			xsetroot -name "$(_pacman)$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
 			sleep 1m
 		done
 	fi
 elif [ "$(cat /etc/hostname)" = "vm" ]; then
 	if [ "$1" = "refresh" ]; then
-		xsetroot -name "$(_disk_usage_home)  $(_date)  $(_time)"
+		xsetroot -name "$(_pacman)$(_disk_usage_home)  $(_date)  $(_time)"
 	else
 		while true; do
-			xsetroot -name "$(_disk_usage_home)  $(_date)  $(_time)"
+			xsetroot -name "$(_pacman)$(_disk_usage_home)  $(_date)  $(_time)"
 			sleep 1m
 		done
 	fi
