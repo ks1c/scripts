@@ -17,4 +17,4 @@ case "$1" in
 		exit
 esac
 
-~/scripts/dwmbar.sh refresh
+dwmbar
