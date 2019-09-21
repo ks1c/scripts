@@ -2,7 +2,7 @@
 
 CMD=$(echo -e "power off\nreboot\nlock\nlog off")
 
-INPUT=$(echo -e "$CMD" | dmenu -nb Black -fn ':bold:pixelsize=15')
+INPUT=$(echo -e "$CMD" | dmenu -fn "monospace:size=12")
 
 case "$INPUT" in
 	"power off")
