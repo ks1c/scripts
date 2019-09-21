@@ -22,7 +22,7 @@ _volume() {
 
 _pacman() {
 	updates="$(cat /tmp/pacman_updates)"
-	if [ "$updates" != "0" ]; then
+	if [ "$updates" -gt 0 ]; then
 		echo -n " $updates  "
 	fi
 }
