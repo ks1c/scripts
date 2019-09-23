@@ -6,28 +6,30 @@ declare -i BEHIND=0
 declare -a repo_list=(
 "$HOME/dotfiles"
 "$HOME/scripts"
+"$HOME/.suckless/dwm"
+"$HOME/.suckless/st"
 )
 
 for i in "${repo_list[@]}"; do
-	break
-	#cd "$i"
-	#git fetch
+
+	cd "$i"
+
+	git fetch 2>/dev/null
+
+	GITSTATUS="$(git status)"
+
+	if [ "$(echo $GITSTATUS | grep "is ahead")" != "" ]; then
+		[ "$1" = "--verbose" ] && echo "$i"
+		AHEAD+="$(echo $GITSTATUS | grep -o '[0-9]')"
+	elif [ "$(echo $GITSTATUS | grep "is behind")" != "" ]; then
+		[ "$1" = "--verbose" ] && echo "$i"
+		BEHIND+="$(echo $GITSTATUS | grep -o '[0-9]')"
+	elif [ "$(echo $GITSTATUS | grep "have diverged")" != "" ]; then
+		[ "$1" = "--verbose" ] && echo "$i"
+		declare -a DIVERGED=($(echo "$GITSTATUS" | grep -o '[0-9]'))
+		AHEAD+="${DIVERGED[0]}"
+		BEHIND+="${DIVERGED[1]}"
+	fi
 done
 
-#GITSTATUS="$(git status)"
-GITSTATUS="$1"
-
-if [ "$(echo $GITSTATUS | grep "is ahead")" != "" ]; then
-	echo "is ahead"
-elif [ "$(echo $GITSTATUS | grep "is behind")" != "" ]; then
-	echo "is behind"
-elif [ "$(echo $GITSTATUS | grep "have diverged")" != "" ]; then
-	echo "have diverged"
-fi
-#cat $1 | grep "is behind" | grep -o '[0-9]'
-#cat $1 | grep "is ahead" | grep -o '[0-9]'
-#AHEAD+=$1
-#echo $AHEAD
-#declare -a DIVERGED=($1)
-#AHEAD+="${DIVERGED[0]}"
-#echo $AHEAD
+[ "$AHEAD|$BEHIND" != "0|0" ] && echo "$AHEAD|$BEHIND"
