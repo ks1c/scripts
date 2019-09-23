@@ -27,10 +27,17 @@ _pacman() {
 	fi
 }
 
+_check_repositories() {
+	check_repositories="$(check_repositories)"
+	if [ "$check_repositories" != "" ]; then
+		echo -n " $check_repositories  "
+	fi
+}
+
 if [ "$(cat /etc/hostname)" = "laptop" ]; then
 	xsetroot -name "$(_pacman)$(_volume)  $(_disk_usage_home)  $(_date)  $(_time)"
 elif [ "$(cat /etc/hostname)" = "desktop" ]; then
-	xsetroot -name "$(_pacman)$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
+	xsetroot -name "$(_check_repositories)$(_pacman)$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
 elif [ "$(cat /etc/hostname)" = "vm" ]; then
 	xsetroot -name "$(_pacman)$(_disk_usage_home)  $(_date)  $(_time)"
 fi
