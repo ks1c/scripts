@@ -17,4 +17,4 @@ open image in a pop up sxiv
 - [ ] update dwmbar with script for checking news updates in /tmp
 - [ ] use xdo to control popups
   - [x] Telegram
-- [ ] add script for fetching repos from upstream and display number of commits ahead
+- [x] add script for fetching repos from upstream and display number of commits ahead
