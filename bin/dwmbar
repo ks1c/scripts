@@ -28,7 +28,7 @@ _pacman() {
 }
 
 _check_repositories() {
-	check_repositories="$(check_repositories)"
+	check_repositories="$(cat /tmp/check_repositories)"
 	if [ "$check_repositories" != "" ]; then
 		echo -n " $check_repositories  "
 	fi
