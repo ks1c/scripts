@@ -32,4 +32,4 @@ for i in "${repo_list[@]}"; do
 	fi
 done
 
-[ "$AHEAD|$BEHIND" != "0|0" ] && echo "$AHEAD|$BEHIND" |& tee /tmp/check_repositories
+echo "$AHEAD|$BEHIND" |& tee /tmp/check_repositories
