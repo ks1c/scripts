@@ -1,0 +1,1 @@
+newsboat -u ~/dotfiles/newsboat/urls -x reload print-unread | awk '{print }' > /tmp/newsboat-unread
