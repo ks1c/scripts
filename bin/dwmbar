@@ -38,10 +38,19 @@ _check_repositories() {
 	fi
 }
 
+_rss() {
+	if [ -e /tmp/newsboat-unread ]; then
+		unread="$(cat /tmp/newsboat-unread)"
+		if [ "$unread" -gt 0 ] && [ "$unread" != "" ]; then
+			echo -n " $unread  "
+		fi
+	fi
+}
+
 if [ "$(cat /etc/hostname)" = "laptop" ]; then
 	xsetroot -name "$(_pacman)$(_volume)  $(_disk_usage_home)  $(_date)  $(_time)"
 elif [ "$(cat /etc/hostname)" = "desktop" ]; then
-	xsetroot -name "$(_check_repositories)$(_pacman)$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
+	xsetroot -name "$(_check_repositories)$(_pacman)$(_rss)$(_volume)  $(_disk_usage_storage)  $(_disk_usage_home)  $(_date)  $(_time)"
 elif [ "$(cat /etc/hostname)" = "vm" ]; then
-	xsetroot -name "$(_check_repositories)$(_pacman)$(_disk_usage_home)  $(_date)  $(_time)"
+	xsetroot -name "$(_check_repositories)$(_pacman)$(_rss)$(_disk_usage_home)  $(_date)  $(_time)"
 fi
