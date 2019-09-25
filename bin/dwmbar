@@ -21,16 +21,20 @@ _volume() {
 }
 
 _pacman() {
-	updates="$(cat /tmp/pacman_updates)"
-	if [ "$updates" -gt 0 ]; then
-		echo -n " $updates  "
+	if [ -e /tmp/pacman_updates ]; then
+		updates="$(cat /tmp/pacman_updates)"
+		if [ "$updates" -gt 0 ] && [ "$updates" != "" ]; then
+			echo -n " $updates  "
+		fi
 	fi
 }
 
 _check_repositories() {
-	check_repositories="$(cat /tmp/check_repositories)"
-	if [ "$check_repositories" != "0|0" ]; then
-		echo -n " $check_repositories  "
+	if [ -e /tmp/check_repositories ]; then
+		check_repositories="$(cat /tmp/check_repositories)"
+		if [ "$check_repositories" != "0|0" ] && [ "$check_repositories" != "" ]; then
+			echo -n " $check_repositories  "
+		fi
 	fi
 }
 
