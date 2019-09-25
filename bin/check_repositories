@@ -33,3 +33,6 @@ for i in "${repo_list[@]}"; do
 done
 
 echo "$AHEAD|$BEHIND" |& tee /tmp/check_repositories
+
+# update dwmbar
+dwmbar

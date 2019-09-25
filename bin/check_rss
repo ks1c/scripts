@@ -6,6 +6,8 @@ if ! pgrep -x newsboat >/dev/null; then
 		"Rss feed has been updated." \
 		"You have $(cat /tmp/newsboat-unread) unread news." \
 		--icon=~/.local/share/icons/rss.png
+	# update dwmbar
+	dwmbar
 else
 	notify-send "Newsboat is already running."
 fi
