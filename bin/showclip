@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 if [ "$(xclip -selection primary -t TARGETS -o | grep STRING)" != "" ]; then
 	PRIMARY="$(xclip -selection primary -o)"
 else
@@ -13,4 +13,3 @@ fi
 
 echo "$PRIMARY"
 echo "$CLIPBOARD"
-
