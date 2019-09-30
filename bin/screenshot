@@ -16,5 +16,15 @@ for i in "$@"; do
 				"It has been copied to clipboard." \
 				--icon=~/.local/share/icons/screenshot.png
 							;;
+
+		selection-edit)
+			ssname="screenshot_$(date +"%Y-%m-%d_%H:%M:%S").png"
+			maim -s /tmp/$ssname
+			[ -e /tmp/$ssname ] && aseprite /tmp/$ssname &
+			notify-send \
+				"Screen Shot taken!" \
+				"Edit in aseprite" \
+				--icon=~/.local/share/icons/screenshot.png
+							;;
 	esac
 done
