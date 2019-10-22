@@ -19,3 +19,4 @@ open image in a pop up sxiv
 - [ ] use xdo to control popups
   - [x] Telegram
 - [x] add script for fetching repos from upstream and display number of commits ahead
+- [ ] add full work flow for doc writing + live viewing for markdown and etc in vim
