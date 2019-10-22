@@ -5,8 +5,8 @@ TODO
 
 - [x] remove sxhkd from xinit and transfer key binds to dwms config
 - [ ] finish "showxclip", with show text and image in a dmenu script with option to
-- [ ] Set up tmux
 open image in a pop up sxiv
+- [ ] Set up tmux
 - [ ] filter pup ups in dwm config
   - [x] Telegram
 - [x] ~~make script for easy renaming subtitles~~ using vifm with shortcuts now
