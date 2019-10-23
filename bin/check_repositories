@@ -19,13 +19,13 @@ for i in "${repo_list[@]}"; do
 
 	GITSTATUS="$(git status)"
 
-	if [ "$(echo $GITSTATUS | grep "is ahead")" != "" ]; then
+	if [ "$(echo "$GITSTATUS" | grep "is ahead")" != "" ]; then
 		[ "$1" = "--verbose" ] && echo "$i"
-		AHEAD+="$(echo $GITSTATUS | grep "is ahead" | grep -o '[0-9]')"
-	elif [ "$(echo $GITSTATUS | grep "is behind")" != "" ]; then
+		AHEAD+="$(echo "$GITSTATUS" | grep "is ahead" | grep -o '[0-9]')"
+	elif [ "$(echo "$GITSTATUS" | grep "is behind")" != "" ]; then
 		[ "$1" = "--verbose" ] && echo "$i"
-		BEHIND+="$(echo $GITSTATUS | grep "is behind" | grep -o '[0-9]')"
-	elif [ "$(echo $GITSTATUS | grep "have diverged")" != "" ]; then
+		BEHIND+="$(echo "$GITSTATUS" | grep "is behind" | grep -o '[0-9]')"
+	elif [ "$(echo "$GITSTATUS" | grep "have diverged")" != "" ]; then
 		[ "$1" = "--verbose" ] && echo "$i"
 		declare -a DIVERGED=($(echo "$GITSTATUS" | grep "different commits" | grep -o '[0-9]'))
 		AHEAD+="${DIVERGED[0]}"
