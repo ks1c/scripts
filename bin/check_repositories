@@ -8,7 +8,7 @@ declare -a repo_list=(
 "$HOME/scripts"
 "$HOME/.suckless/dwm"
 "$HOME/.suckless/st"
-"$HOME/projects/gdx-game"
+"$HOME/projects/gdx2d"
 )
 
 for i in "${repo_list[@]}"; do
