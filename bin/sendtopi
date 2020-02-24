@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-scp $@ rpi:/media/files/dump/
+scp "$@" rpi:/media/files/dump/
 
 notify-send \
 	"File is sent to Pi!" \
