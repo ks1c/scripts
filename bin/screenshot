@@ -19,8 +19,7 @@ for i in "$@"; do
 
 		selection-edit)
 			ssname="screenshot_$(date +"%Y-%m-%d_%H:%M:%S").png"
-			maim -s /tmp/$ssname
-			[ -e /tmp/$ssname ] && aseprite /tmp/$ssname &
+			maim -s /tmp/$ssname && aseprite /tmp/$ssname &
 			notify-send \
 				"Screen Shot taken!" \
 				"Edit in aseprite" \
